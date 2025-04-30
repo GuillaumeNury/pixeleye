@@ -71,8 +71,8 @@ services:
     restart: unless-stopped
     environment:
       - STAGE_STATUS=prod
-      - BACKEND_URL=http://localhost:5000
-      - FRONTEND_URL=http://localhost:3000
+      - BACKEND_URL=${BACKEND_URL}
+      - FRONTEND_URL=${FRONTEND_URL}
       - DB_HOST=postgres
       - DB_PORT=5431
       - DB_NAME=pixeleye
@@ -84,7 +84,7 @@ services:
       - DB_MAX_LIFTTIME_CONNECTIONS=1
       - S3_BUCKET=pixeleye
       - S3_ENDPOINT=http://minio:9000
-      - S3_CLIENT_ENDPOINT=http://localhost:9000
+      - S3_CLIENT_ENDPOINT=${S3_URL}
       - S3_ACCESS_KEY_ID=pixeleye
       - S3_KEY_SECRET=${MINIO_ROOT_PASSWORD}
       - ORY_URL=http://kratos:4433
@@ -112,7 +112,7 @@ services:
     restart: unless-stopped
     environment:
       - ORY_URL=http://kratos:4433
-      - CLIENT_ORY_URL=http://localhost:4433
+      - CLIENT_ORY_URL=${ORY_URL}
       - NEXT_PUBLIC_BACKEND_URL=http://pixeleye-backend:5000
       # - NEXT_PUBLIC_GITHUB_APP_NAME= # optional if you want to use the github login
     networks:
